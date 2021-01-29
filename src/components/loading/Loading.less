@@ -1,0 +1,151 @@
+@import '~src/styles/variable.less';
+@class-prefix: ~'ik-h5-loading';
+
+.fade-exit, .fade-enter-active {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+.fade-exit-active, .fade-enter {
+  opacity: 0;
+  filter: blur(2px);
+}
+
+.@{class-prefix} {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99999;
+  transition: all 150ms;
+  // transition: all 0.2s;
+  // animation: fadeIn 1 0.2s ease-in;
+
+  &-loading {
+    margin: auto;
+    width: 1px;
+    height: 1px;
+  }
+
+  &-stop-wrapper {
+    //用于阻止点击的loading
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // ------------ 动画 ------------------
+  // 两个小半圈
+  &-clip-rotate {
+    position: relative;
+    & > div {
+      animation-fill-mode: both;
+      position: absolute;
+      left: -40px;
+      top: -40px;
+      border: 5px solid @var-theme-color;
+      border-bottom-color: transparent;
+      border-top-color: transparent;
+      border-radius: 100%;
+      height: 70px;
+      width: 70px;
+      animation: clip-rotate 1s 0s ease-in-out infinite;
+      &:last-child {
+        display: inline-block;
+        top: -20px;
+        left: -20px;
+        width: 30px;
+        height: 30px;
+        animation-duration: 0.5s;
+        border-color: @var-theme-color transparent @var-theme-color transparent;
+        animation-direction: reverse;
+      }
+    }
+  }
+
+  // 音波
+  &-line-scale{
+    position: relative;
+    transform: translateY(-35px);
+    &>div{
+      position: absolute;
+      background-color: @var-theme-color;
+      width: 8px;
+      height: 70px;
+      border-radius: 4px;
+      animation-fill-mode: both;
+      animation: line-scale 0.9s -0.5s infinite cubic-bezier(0.11, 0.49, 0.38, 0.78);
+      &:nth-child(2), &:nth-child(4){
+        left: -16px;
+        animation-delay: -0.25s !important;
+      }
+      &:nth-child(4){ left:  16px; }
+      &:nth-child(1), &:nth-child(5){
+        left: -32px;
+        animation-delay: 0s !important;
+      }
+      &:nth-child(5){ left: 32px; }
+    }
+  }
+  // 波纹
+  &-ball-scale {
+    position: relative;
+    transform: translateY(-60px);
+    &>div:nth-child(2) {
+      animation-delay: -0.75s;
+    }
+    &>div {
+      background-color: @var-theme-color;
+      border-radius: 100%;
+      margin: 4px;
+      animation-fill-mode: both;
+      position: absolute;
+      left: -60px;
+      top: 0px;
+      opacity: 0;
+      margin: 0;
+      width: 120px;
+      height: 120px;
+      animation: ball-scale 1.5s 0s linear infinite;
+    }
+  }
+}
+@keyframes clip-rotate {
+  0% {
+    transform: rotate(0deg); 
+  }
+  50% {
+    transform: rotate(180deg); 
+  }
+  100% {
+    transform: rotate(360deg); 
+  }
+}
+
+@keyframes line-scale {
+  0% {
+    transform: scaley(1); 
+  }
+  80% {
+    transform: scaley(0.3); 
+  }
+  90% {
+    transform: scaley(1); 
+  } 
+}
+
+
+@keyframes ball-scale {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

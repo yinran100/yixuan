@@ -1,0 +1,46 @@
+
+@class-prefix: ~'ikc-error';
+
+.@{class-prefix} {
+  padding: 28px;
+  font-family: Consolas, Menlo, monospace;
+  line-height: 1.5;
+  &-poster{
+    margin: 128px auto 64px;
+    width: 480px;
+    height: 336px;
+    img{
+      object-fit: contain;
+    }
+  }
+  &-tips{
+    font-size: 34px;
+    color: #979fa8;
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  &-detail{
+    height: 480px;
+    overflow: auto;
+    border-radius: 6px;
+    padding: 16px;
+    background-color: rgba(206, 17, 38, 0.05);
+    margin-bottom: 120px;
+  }
+  &-content{
+    height: 100%;
+    overflow: auto;
+  }
+  &-title{
+    font-size: 28px;
+    line-height: 1.5;
+    color: rgb(206, 17, 38);
+    margin-bottom: 16px;
+  }
+  &-info{
+    font-family: sans-serif;
+    word-break: break-all;
+    font-size: 24px;
+    color: rgb(135, 142, 145);
+  }
+}

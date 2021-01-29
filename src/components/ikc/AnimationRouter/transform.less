@@ -1,0 +1,47 @@
+@time: ~'300ms';
+
+/* 路由前进时的入场/离场动画 */
+.forward-enter, .forward-exit,
+.back-enter, .back-exit {
+  position: absolute !important;
+  top: 0;
+  width: 100%;
+}
+.forward-enter-active, .forward-exit-active,
+.back-enter-active, .back-exit-active{
+  transition: all @time;
+  touch-action: none;
+}
+.forward-enter {
+  transform: translateX(100%);
+}
+
+.forward-enter-active, .forward-exit {
+  transform: translateX(0);
+}
+
+.forward-exit-active, .back-enter {
+  transform: translateX(-100%);
+}
+
+.back-enter-active, .back-exit {
+  transform: translateX(0);
+}
+
+.back-exit-active {
+  transform: translateX(100%);
+}
+
+.appear{
+  animation: blurIn 0.3s;
+}
+@keyframes blurIn {
+  from{
+    opacity: 0;
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}

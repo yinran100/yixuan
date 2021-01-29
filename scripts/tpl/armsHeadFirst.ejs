@@ -1,0 +1,11 @@
+<script>
+  // 在 ARMS 前收集资源加载异常数据
+  window.addEventListener("error", function (e) {
+    var elem = e.target;
+    // sdk加载之前, 只观察link标签和script标签就行, img等会在sdk加载完成之后监控
+    if(elem instanceof HTMLElement && /link|script/.test(elem.tagName.toLowerCase())){
+      window.__sourceError = window.__sourceError || [];
+      window.__sourceError.push(e);
+    }
+  }, true);
+</script>

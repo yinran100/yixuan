@@ -38,49 +38,6 @@
   </head>
   <body>
     <%= htmlWebpackPlugin.options.htmlParams.bodyFirst %>
-    <!-- 自定义的 html 标签，用于屏蔽客户端内 dom 取不到的报错问题 -->
-    <webview-bridge-container style="display: none;">
-      <div id="ik_share_title"></div>
-      <div id="ik_share_img"></div>
-      <div id="ik_share_url"></div>
-    </webview-bridge-container>
-    <div id="root"></div>
-
-    <!-- wenire调试, 真机使用, 可跨端 -->
-    <% if (process.env.WEINRE_PORT) {%>
-      <script src="http://<%= htmlWebpackPlugin.options.htmlParams.ip%>:<%= process.env.WEINRE_PORT %>/target/target-script-min.js#anonymous"></script>
-    <% } %>
-
-    <!-- react-devtools进行调试, safari端需要使用 -->
-    <% if (process.env.DEVTOOLS_PORT) {%>
-      <script src="http://<%= htmlWebpackPlugin.options.htmlParams.ip%>:<%= process.env.DEVTOOLS_PORT %>"></script>
-    <% } %>
-    <!-- 方便H5在微信弹出跳转浏览器的提示 -->
-    <style>
-      #wx-mask{
-        z-index: 99999;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-      }
-      #wx-mask .wx-toast-wrapper{
-        text-align:right;
-        margin-top: 1%;
-        margin-right:5%;
-      }
-      #wx-mask .wx-toast-wrapper img{
-        width:70%;
-        margin:0 auto;
-      }
-    </style>
-    <div id="wx-mask" style="display: none;">
-      <div class="wx-toast-wrapper">
-        <img src="//img.ikstatic.cn/MTU5MDQ4NTA0MTY0MSMyMjYjcG5n.png" alt=""/>
-      </div>
-    </div>
     <!-- 多entry的自定义模板处理 -->
     <%= htmlWebpackPlugin.options.htmlParams.customTemplate %>
     <%= htmlWebpackPlugin.options.htmlParams.scriptList %>

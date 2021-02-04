@@ -11,7 +11,6 @@ const path = require('path');
 const url = require('url');
 const chalk = require('chalk');
 const detect = require('detect-port-alt');
-const isRoot = require('is-root');
 const inquirer = require('inquirer');
 const clearConsole = require('react-dev-utils/clearConsole');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
@@ -358,10 +357,7 @@ function choosePort(host, defaultPort) {
         if (port === defaultPort) {
           return resolve(port);
         }
-        const message =
-          process.platform !== 'win32' && defaultPort < 1024 && !isRoot()
-            ? `Admin permissions are required to run a server on a port below 1024.`
-            : `Something is already running on port ${defaultPort}.`;
+        const message = `Admin permissions are required to run a server on a port below 1024.`
         if (isInteractive) {
           clearConsole();
           const existingProcess = getProcessForPort(defaultPort);

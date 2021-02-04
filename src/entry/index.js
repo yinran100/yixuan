@@ -1,6 +1,5 @@
 /* eslint-disable no-extend-native */
 // import '@babel/polyfill'
-import './publicPath'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -9,10 +8,6 @@ import { ErrorBoundary } from 'ikc'
 import protoMix from './proto-mix'
 import $utils from '../utils'
 import '../styles/base.css'
-
-import '../utils/protoExtension'
-import './serviceIntercept'
-import './wechat'
 
 const appContainer = document.getElementById('root')
 const IS_DEV = process && process.env.NODE_ENV === 'development'
@@ -24,7 +19,7 @@ export const loadingUntilFirstContentPaint = () => {
   // $loading.show({ animateName: 'line-scale' })
 
   // DOMContentLoaded 页面仍然是白的, 这里的200ms是 DOMContentLoaded -> First Contentful Paint 时间预估
-  document.addEventListener('DOMContentLoaded', () => setTimeout($loading.hide, 200))
+  document.addEventListener('load', () => setTimeout($loading.hide, 200))
 }
 
 if (__DEV__ && process.env.VCONSOLE) { // 移动端调试
